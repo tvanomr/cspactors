@@ -57,3 +57,7 @@ func (l *List) TakeHeadAndSeal() *Item {
 	}
 	return (*Item)(head)
 }
+
+func (l *List) IsBlocked() bool {
+	return atomic.LoadPointer(&l.head) == unsafe.Pointer(l)
+}
